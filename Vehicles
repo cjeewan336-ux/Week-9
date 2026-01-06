@@ -1,0 +1,110 @@
+package Week9;
+
+
+/**
+ * Write a description of class Vehicle here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Vehicle
+{
+    private int vehicleId;
+    private String brand;
+    private double basePrice;
+
+    public Vehicle(int vehicleId, String brand, double basePrice) {
+        this.vehicleId = vehicleId;
+        this.brand = brand;
+        this.basePrice = basePrice;
+    }
+    
+    public double getBasePrice() {
+        return basePrice;
+    }
+    
+    public double calculateTax() {
+        return basePrice * 0.10;
+    }
+    
+    public void displayVehicleInfo() {
+        System.out.println("Vehicle ID: " + vehicleId);
+        System.out.println("Brand: " + brand);
+        System.out.println("Base Price: " + basePrice);
+    }
+}
+
+package Week9;
+
+public class Car extends Vehicle {
+    private int numberOfDoors;
+    private String fuelType;
+
+    public Car(int vehicleId, String brand, double basePrice,
+               int numberOfDoors, String fuelType) {
+        super(vehicleId, brand, basePrice);
+        this.numberOfDoors = numberOfDoors;
+        this.fuelType = fuelType;
+    }
+
+    public double calculateFinalPrice() {
+        double basePrice = getBasePrice();
+        return basePrice + calculateTax() + (basePrice * 0.05);
+    }
+
+    public void displayCarInfo() {
+        displayVehicleInfo();
+        System.out.println("Doors      : " + numberOfDoors);
+        System.out.println("Fuel Type  : " + fuelType);
+    }
+}
+
+package Week9;
+
+public class Bike extends Vehicle {
+    
+    private double engineCapacity;
+
+    public Bike(int vehicleId, String brand, double basePrice,
+                double engineCapacity) {
+        super(vehicleId, brand, basePrice);
+        this.engineCapacity = engineCapacity;
+    }
+
+    
+    public double calculateFinalPrice() {
+        return getBasePrice() + calculateTax();
+    }
+
+    public void displayBikeInfo() {
+        displayVehicleInfo();
+        System.out.println("Engine CC  : " + engineCapacity);
+    }
+}
+
+package Week9;
+
+
+/**
+ * Write a description of class VehicleApp here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class VehicleApp
+{
+        public static void main(String[] args) {
+        Car car = new Car(1, "Scorpio", 20000, 4, "Petrol");
+        Bike bike = new Bike(2, "Royal Enfield", 15000, 600);
+
+        System.out.println("Car Details:");
+        car.displayVehicleInfo();
+        System.out.println("Tax: " + car.calculateTax());
+        System.out.println("Final Price: " + car.calculateFinalPrice());
+
+        System.out.println("\nBike Details:");
+        bike.displayVehicleInfo();
+        System.out.println("Tax: " + bike.calculateTax());
+        System.out.println("Final Price: " + bike.calculateFinalPrice());
+    }
+}
