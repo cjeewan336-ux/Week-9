@@ -1,0 +1,17 @@
+package Week9;
+
+public class Bike extends Vehicle
+
+{
+  private double engineCapacity;
+
+    public Bike(int vehicleId, String brand, double basePrice, double engineCapacity) {
+        super(vehicleId, brand, basePrice);
+        this.engineCapacity = engineCapacity;
+    }
+
+    public double calculateFinalPrice() {
+        return basePrice + calculateTax();
+    }
+}
+  
